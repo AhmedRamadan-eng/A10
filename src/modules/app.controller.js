@@ -11,12 +11,10 @@ export const bootstrap = async () => {
   await databaseconnection();
 
   
-  app.use("/auth", authRouter);
+  app.use("/auth",  authRouter);
 
   
-  // app.use("*", (req, res) =>
-  //   res.status(404).json({ message: "invalid route" })
-  // );
+
 
 
   app.use(globalErrorHandler);

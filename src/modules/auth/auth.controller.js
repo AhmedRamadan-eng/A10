@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signup,login} from "./auth.service.js";
+import { signup,login, getUserById} from "./auth.service.js";
 import { SuccessReseponce } from "../../common/utils/reseponce/successe.reseponce.js";
 const router = Router();
 router.post('/signup', async (req, res) => {
@@ -22,5 +22,16 @@ router.post("/login",async(req,res)=>{
         data: loginuser
     });
 })
+
+router.get("/get-user-by-id", async (req, res) => {
+  const userdata = await getUserById(req.headers);
+
+  return SuccessReseponce({
+    res,
+    message: "User fetched successfully",
+    status: 200,
+    data: userdata
+  });
+});
 
 export default router;

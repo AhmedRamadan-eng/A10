@@ -27,6 +27,14 @@ export const ConflictException = ({ message = "ConflictException", extra = undef
   })
 }
 
+export const UnauthorizedException = ({ message = "UnauthorizedException", extra = undefined } = {}) => {
+  return ErrorResponse({
+    status: 401,
+    message,
+    extra
+  })
+}
+
 export const globalErrorHandler = (error, req, res, next) => {
   const status = error.status ? error.status : error.cause ? error.cause.status : 500;
   const mood = env.mood == 'dev';
